@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fruits App</title>
+  </head>
+  <body>
+    <h1>Fruits Edit page</h1>
+    <form action="/fruits/<%=index%>?_method=PUT" method="POST">
+        Name: <input type="text" name="name" value="<%=fruit.name%>"/> <br />
+        Color: <input type="text" name="color" value="<%=fruit.color%>"/> <br />
+        Is Ready to Eat: <input type="checkbox" name="readyToEat" <% 
+        if(fruit.readyToEat === true) {%> checked <% } %> />
+        <br />
+        <input type="submit" none="" value="Submit Changes" />
+    </form>
+  </body>
+</html>

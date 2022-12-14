@@ -27,18 +27,27 @@ app.get("/fruits/", (req, res) =>{
   })
 });
 
-//N
+//N --New
 app.get("/fruits/new", (req, res) => {
   res.render("new.ejs")
 });
 
-//D
+//D --Delete
 app.delete("/fruits/:indexOfFruitsArray", (req, res) =>{
   fruits.splice(req.params.indexOfFruitsArray, 1)
   res.redirect("/fruits")
 })
 
 //U
+app.put("/fruits/:indexOfFruitsArray", (req, res) =>{
+  if(req.body.readyToEat === "on"){
+    req.body.readyToEat = true
+  } else {
+    req.body.readyToEat = false
+  }
+  fruits[req.params.indexOfFruitsArray] = req.body
+  res.redirect("/fruits")
+})
 
 //C -- Create
 app.post("/fruits", (req, res) =>{
@@ -52,7 +61,17 @@ app.post("/fruits", (req, res) =>{
   res.redirect("/fruits")
 })
 
-//E
+//E --Edit
+app.get("/fruits/:indexOfFruitsArray/edit", (req, res) =>{
+  res.render(
+    "edit.ejs",
+    {
+      fruit: fruits[req.params.indexOfFruitsArray],
+      index: req.params.indexOfFruitsArray,
+    }
+  )
+})
+
 
 //S --Show
 app.get("/fruits/:indexOfFruitsArray", (req, res) => {
